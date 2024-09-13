@@ -11,7 +11,7 @@
 @Injectable()
 export class SuscriptionServiceImpl extends SuscriptionService {
 
-    async preapprobeSuscripcion(request: MeliSuscriptionPreapprobalRequest): Promise<Boolean> {
+    async preapprobe(request: MeliSuscriptionPreapprobalRequest): Promise<Boolean> {
         console.log("Preaprobando suscripcion ---->", request.data);
         try {
             const responseObject: MeliSuscriptionResponse = await this.preapproveSuscription(request);
