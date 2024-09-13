@@ -4,12 +4,12 @@
 ** Esto lo que hace es enviar la data a mi BE que maneja los pagos
 **
 */
-export async function saveSuscriptionPreaproval(amount: number, planId: string, userString: string, token: any) {
+export async function saveSuscriptionPreaproval(amount: number, planId: string, userString: string, cardFormData: any) {
     try {
         const usrLoged: UserLoged = JSON.parse(userString);
         const email = usrLoged?.auth!.email!;
         const reqToObject: MeliSuscriptionPreapprobalRequest = new MeliSuscriptionPreapprobalRequest(
-            email, token, planId, amount
+            email, cardFormData.token, planId, amount
         );
         const response: Response = await fetch(GATEWAY_ENDPOINT_GENERAL, {
             method: 'POST',
