@@ -37,7 +37,7 @@ export class SuscriptionServiceImpl extends SuscriptionService {
         endDate.setFullYear(futureYear);
         const formattedEndDate = endDate.toISOString();
         try {
-            const response = await fetch(SUSCRIPTION_PREAPPROVAL, {
+            const response = await fetch('https://api.mercadopago.com/preapproval', {
                 method: 'POST',
                 headers: {
                     "Authorization": `Bearer ${ACCESS_TOKEN}`,
@@ -64,29 +64,6 @@ export class SuscriptionServiceImpl extends SuscriptionService {
         return uuid;
     }
 
-
-    private getPlanBody(plan: PaymentPlan) {
-        return JSON.stringify({
-            "reason": PaymentConstants.REASON.concat(" " + plan.title),
-            "auto_recurring": {
-                "frequency": PaymentConstants.FREQUENCY,
-                "frequency_type": PaymentConstants.FREQUENCY_TYPE,
-                "billing_day": PaymentConstants.BILLING_DAY,
-                "billing_day_proportional": true,
-                "transaction_amount": plan.amount,
-                "currency_id": PaymentConstants.CURRENCY_ID
-            },
-            "payment_methods_allowed": {
-                "payment_types": [
-                    {}
-                ],
-                "payment_methods": [
-                    {}
-                ]
-            },
-            "back_url": "https://www.handy.com"
-        })
-    }
 
     private getSuscriptionPreapprobalBody(request: MeliSuscriptionPreapprobalRequest
         , UUID: string, startDate: string, formattedEndDate: string) {
