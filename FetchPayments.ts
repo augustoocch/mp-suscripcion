@@ -11,7 +11,7 @@ export async function saveSuscriptionPreaproval(amount: number, planId: string, 
         const reqToObject: MeliSuscriptionPreapprobalRequest = new MeliSuscriptionPreapprobalRequest(
             email, cardFormData.token, planId, amount
         );
-        const response: Response = await fetch(GATEWAY_ENDPOINT_GENERAL, {
+        const response: Response = await fetch('tu-endpoint-de-BE, {
             method: 'POST',
             credentials: 'include',
             headers: {
